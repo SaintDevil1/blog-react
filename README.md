@@ -24,3 +24,9 @@
 - posts: массив post: id / title / imageUrl / publishedAt / commentsCount
 - post:  id / title / imageUrl / publishedAt / comments: массив comment: id / author / content / publishedAt
 - users: массив user: id / login / registedAt / role
+
+
+
+План реализации блога:Тайм менеджмент
+Среда: Закончить уроки с 12 по 15.
+
