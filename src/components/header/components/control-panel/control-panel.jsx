@@ -1,42 +1,73 @@
 import styled from 'styled-components';
-import { Icon } from '../../../../components';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Icon } from '../../../../components';
 import { Link, useNavigate } from 'react-router-dom';
+import { ROLE } from '../../../../constants/index.js';
+import { selectUsersRole, selectUserLogin, selectUserSession } from '../../../../selectors';
+import { logout } from '../../../../actions';
+
 
 const RightAligned = styled.div`
 	display: flex;
 	justify-content: flex-end;
-`;
-
-
-const StyledLink = styled(Link)`
-	display: flex;
-	justify-content: center;
 	align-items: center;
-	font-size: 18px;
-	width: 100%;
-	height: 32px;
-	color: #000;
-	border: 1px solid #000
 `;
 
-const StyledButton = styled.div`
+
+const UserName = styled.div`
+	font-size: 18px;
+	font-weight: bold;
+`;
+
+
+const StyledIcon = styled.div`
 	&:hover {
 		cursor: pointer;
 	}
 `;
 
+const StyledLogoutIcon = styled.div`
+	&:hover {
+		cursor: pointer;
+	}
+`;
+
+
 const ControlPanelContainer = ({ className }) => {
 
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const roleId = useSelector(selectUsersRole);
+	const login = useSelector(selectUserLogin);
+	const session = useSelector(selectUserSession);
+
 	return (
 		<div className={className}>
 			<RightAligned>
-				<StyledLink to='/login'>Войти</StyledLink>
+				{roleId === ROLE.GUEST ? (
+					<Button>
+						<Link to='/login'>Войти</Link>
+					</Button>
+				) : (
+					<>
+						<UserName>{login}</UserName>
+						<StyledIcon>
+						<Icon
+							id='fa-sign-out'
+							margin='0 0 0 10px'
+							onClick={() => dispatch(logout(session))}
+						/>
+						</StyledIcon>
+					</>
+				)}
+
+
 			</RightAligned>
+
 			<RightAligned>
-				<StyledButton onClick={() => navigate(-1)}>
+				<StyledIcon onClick={() => navigate(-1)}>
 					<Icon id='fa-backward' margin='10px 0 0 16px' />
-				</StyledButton>
+				</StyledIcon>
 
 				<Link to='/post'>
 					<Icon id='fa-file-text-o' margin='10px 0 0 16px' />
