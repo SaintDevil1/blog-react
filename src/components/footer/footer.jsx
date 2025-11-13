@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Blog } from '../../blog.jsx';
 
 
 const FooterContainer = ({ className }) => {
