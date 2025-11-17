@@ -9,8 +9,8 @@ import styled from 'styled-components';
 import { Link, Navigate } from 'react-router-dom';
 import { setUser } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUsersRole } from '../../selectors/index.js';
-import { ROLE } from '../../constants/index.js';
+import { selectUsersRole } from '../../selectors';
+import { ROLE } from '../../constants';
 
 
 const authFormSchema = yup.object().shape({
@@ -44,7 +44,7 @@ export const AuthorizationContainer = ({ className }) => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm({
-		defaultValue: {
+		defaultValues: {
 			login: '',
 			password: '',
 		},

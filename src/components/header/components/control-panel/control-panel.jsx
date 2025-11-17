@@ -19,20 +19,6 @@ const UserName = styled.div`
 	font-weight: bold;
 `;
 
-
-const StyledIcon = styled.div`
-	&:hover {
-		cursor: pointer;
-	}
-`;
-
-const StyledLogoutIcon = styled.div`
-	&:hover {
-		cursor: pointer;
-	}
-`;
-
-
 const ControlPanelContainer = ({ className }) => {
 
 	const dispatch = useDispatch();
@@ -51,24 +37,17 @@ const ControlPanelContainer = ({ className }) => {
 				) : (
 					<>
 						<UserName>{login}</UserName>
-						<StyledIcon>
+
 						<Icon
 							id='fa-sign-out'
 							margin='0 0 0 10px'
 							onClick={() => dispatch(logout(session))}
 						/>
-						</StyledIcon>
 					</>
 				)}
-
-
 			</RightAligned>
-
 			<RightAligned>
-				<StyledIcon onClick={() => navigate(-1)}>
-					<Icon id='fa-backward' margin='10px 0 0 16px' />
-				</StyledIcon>
-
+				<Icon id='fa-backward' margin='10px 0 0 16px' onClick={() => navigate(-1)} />
 				<Link to='/post'>
 					<Icon id='fa-file-text-o' margin='10px 0 0 16px' />
 				</Link>
