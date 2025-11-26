@@ -10,8 +10,10 @@ const HeaderContainer = ({ className }) => (
 	<header className={className}>
 		<Logo />
 		<Description>
-			Веб-технологии<br />
-			Написание кода<br />
+			Веб-технологии
+			<br />
+			Написание кода
+			<br />
 			Разбор ошибок
 		</Description>
 		<ControlPanel />
@@ -28,5 +30,6 @@ export const Header = styled(HeaderContainer)`
 	padding: 20px 40px;
 	background-color: #fff;
 	box-shadow: 0 -2px 17px #000;
+	z-index: 10;
 
 `;

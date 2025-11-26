@@ -4,5 +4,7 @@ export * from './logout.jsx'
 export * from './fetch-roles.jsx'
 export * from './fetch-users.jsx'
 export * from './update-user-role.jsx'
-export * from './removeUser.jsx'
+export * from './remove-user.jsx'
+export * from './fetch-post.jsx'
+export * from './add-post-comment.jsx'
 

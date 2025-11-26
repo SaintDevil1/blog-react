@@ -1,4 +1,4 @@
-import { ACTION_TYPE } from './action-type.jsx';
+import { ACTION_TYPE } from './action-type.js';
 import { server } from '../bff'
 
 

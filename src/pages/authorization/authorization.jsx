@@ -11,6 +11,7 @@ import { setUser } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUsersRole } from '../../selectors';
 import { ROLE } from '../../constants';
+import { sessions } from '../../bff/sessions.js';
 
 
 const authFormSchema = yup.object().shape({
@@ -68,6 +69,7 @@ export const AuthorizationContainer = ({ className }) => {
 					return;
 				}
 				dispatch(setUser(res));
+				sessionStorage.setItem('userData', JSON.stringify(res));
 			});
 	};
 
