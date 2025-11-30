@@ -13,7 +13,7 @@ const PostContentContainer = ({ className, post: { id, title, imageUrl, content,
 		<div className={className}>
 			<img src={imageUrl} alt={title} />
 			<H2>{title}</H2>
-			<SpecialPanel publishedAt={publishedAt} margin='-20px 0 20px' editButton={
+			<SpecialPanel id={id} publishedAt={publishedAt} margin='-20px 0 20px' editButton={
 				<Icon id='fa-pencil-square-o'
 							margin='0 10px 0 0'
 							size='21px'
