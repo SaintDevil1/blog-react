@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const PostContentContainer = ({ className, post: { id, title, imageUrl, content, publishedAt } }) => {
 	const navigate = useNavigate();
-	console.log(imageUrl)
+
 
 
 	return (
