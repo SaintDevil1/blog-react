@@ -1,6 +1,6 @@
 import { getUsers} from '../api';
 import { sessions } from '../sessions.js';
-import { ROLE } from '../constants';
+import { ROLE } from '../../constants';
 
 
 export const fetchUsers = async (hash) => {

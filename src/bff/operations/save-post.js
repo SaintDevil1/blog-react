@@ -1,6 +1,6 @@
 import { updatePost, addPost } from '../api';
 import { sessions } from '../sessions.js';
-import { ROLE } from '../constants';
+import { ROLE } from '../../constants';
 
 export const savePost = async (hash, newPostData) => {
 	const accessRoles = [ROLE.ADMIN];

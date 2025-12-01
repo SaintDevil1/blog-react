@@ -1,6 +1,6 @@
 // action => operations => fetch
 import { deleteComment, getComments, getPost } from '../api';
-import { ROLE } from '../constants';
+import { ROLE } from '../../constants';
 import { sessions } from '../sessions.js';
 
 

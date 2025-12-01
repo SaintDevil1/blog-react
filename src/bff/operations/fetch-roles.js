@@ -1,6 +1,6 @@
 import { getRoles } from '../api/index.js';
 import { sessions } from '../sessions.js';
-import { ROLE } from '../constants';
+import { ROLE } from '../../constants';
 
 
 export const fetchRoles = async (hash) => {
