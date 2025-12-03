@@ -1,21 +1,30 @@
-import { H2, Content } from '../../components';
+import { H2, PrivateContent } from '../../components';
 import { UserRow, TableRow } from './components';
 import { useServerRequest } from '../../hooks';
+import { checkAccess } from '../../utils';
 import { useEffect, useState } from 'react';
 import { ROLE } from '../../constants';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { selectUsersRole } from '../../selectors/index.js';
 
 const UserContainer = ({ className }) => {
 
 	const [users, setUsers] = useState([]);
 	const [roles, setRoles] = useState([]);
 	const [errorMessage, setErrorMessage] = useState(null);
-	const [shouldUpdateUserList, setShouldUpdateUserList] = useState();
+	const [shouldUpdateUserList, setShouldUpdateUserList] = useState(false);
+	const userRole = useSelector(selectUsersRole);
+
 
 	const requestServer = useServerRequest();
 
 
 	useEffect(() => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			return;
+		}
+
 		Promise.all([
 			requestServer('fetchUsers'),
 			requestServer('fetchRoles')])
@@ -30,17 +39,20 @@ const UserContainer = ({ className }) => {
 				setRoles(rolesRes.res);
 
 			});
-	}, [requestServer, shouldUpdateUserList]);
+	}, [requestServer, shouldUpdateUserList, userRole]);
 
 	const onUserRemove = (userId) => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			return;
+		}
 		requestServer('removeUser', userId).then(() => {
 			setShouldUpdateUserList(!shouldUpdateUserList);
 		});
 	};
 
 	return (
-		<div className={className}>
-			<Content error={errorMessage}>
+		<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
+			<div className={className}>
 				<H2>Пользователи</H2>
 				<div>
 					<TableRow>
@@ -60,8 +72,8 @@ const UserContainer = ({ className }) => {
 						/>
 					))}
 				</div>
-			</Content>
-		</div>
+			</div>
+		</PrivateContent>
 	);
 };
 
@@ -71,5 +83,5 @@ export const Users = styled(UserContainer)`
 	align-items: center;
 	margin: 0 auto;
 	width: 570px;
-	font-size: 18px;
+
 `;
