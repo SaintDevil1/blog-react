@@ -3,11 +3,8 @@ import { SpecialPanel } from '../special-panel/special-panel.jsx';
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 
-
 const PostContentContainer = ({ className, post: { id, title, imageUrl, content, publishedAt } }) => {
 	const navigate = useNavigate();
-
-
 
 	return (
 		<div className={className}>
@@ -33,8 +30,4 @@ export const PostContent = styled(PostContentContainer)`
 		margin: 0 20px 10px 0;
 	}
 
-	& .post-text {
-		font-size: 18px;
-		white-space: pre-line;
-	}
 `;

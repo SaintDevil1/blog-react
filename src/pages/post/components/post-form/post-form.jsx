@@ -43,7 +43,7 @@ const onTitleChange = ({ target }) => setTitleValue(target.value)
 		<div className={className}>
 			<Input value={imageUrlValue} placeholder='Изображение...' onChange={onImageChange} />
 			<Input value={titleValue} placeholder='Заголовок...' onChange={onTitleChange} />
-			<SpecialPanel id={id} publishedAt={publishedAt} margin='20px 0' editButton={
+			<SpecialPanel id={id} publishedAt={publishedAt} margin='0 10px' editButton={
 				<Icon id='fa-floppy-o'
 							size='21px'
 							onClick={onSave} />
