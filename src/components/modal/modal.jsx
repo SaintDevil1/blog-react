@@ -3,8 +3,7 @@ import { Button } from '../button/button';
 import { useSelector } from 'react-redux';
 import { selectModalText, selectModalOnConfirm, selectModalOnCancel, selectModalIsOpen } from '../../selectors';
 
-
-const modalContainer = ({ className }) => {
+const ModalContainer = ({ className }) => {
 	const isOpen = useSelector(selectModalIsOpen);
 	const text = useSelector(selectModalText);
 	const onConfirm = useSelector(selectModalOnConfirm);
@@ -28,7 +27,7 @@ const modalContainer = ({ className }) => {
 	);
 };
 
-export const Modal = styled(modalContainer)`
+export const Modal = styled(ModalContainer)`
 	position: fixed;
 	right: 0;
 	top: 0;
@@ -53,7 +52,7 @@ export const Modal = styled(modalContainer)`
 		text-align: center;
 		background-color: #fff;
 		border: 2px solid #000;
-		box-shadow:0 4px 15px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 		z-index: 30;
 	}
 
@@ -61,7 +60,8 @@ export const Modal = styled(modalContainer)`
 		display: flex;
 		justify-content: center;
 	}
- & .buttons button {
-	 margin: 0 5px;
- }
+
+	& .buttons button {
+		margin: 0 5px;
+	}
 `;

@@ -16,9 +16,7 @@ const UserContainer = ({ className }) => {
 	const [shouldUpdateUserList, setShouldUpdateUserList] = useState(false);
 	const userRole = useSelector(selectUsersRole);
 
-
 	const requestServer = useServerRequest();
-
 
 	useEffect(() => {
 		if (!checkAccess([ROLE.ADMIN], userRole)) {
@@ -37,11 +35,11 @@ const UserContainer = ({ className }) => {
 
 				setUsers(usersRes.res);
 				setRoles(rolesRes.res);
-
 			});
 	}, [requestServer, shouldUpdateUserList, userRole]);
 
 	const onUserRemove = (userId) => {
+
 		if (!checkAccess([ROLE.ADMIN], userRole)) {
 			return;
 		}
@@ -83,5 +81,4 @@ export const Users = styled(UserContainer)`
 	align-items: center;
 	margin: 0 auto;
 	width: 570px;
-
 `;

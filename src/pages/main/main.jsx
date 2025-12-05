@@ -24,15 +24,12 @@ const MainContainer = ({ className }) => {
 			});
 	}, [requestServer, page, shouldSearch]);
 
-
 	const startDelaySearch = useMemo(() => debounce(setShouldSearch, 2000), []);
-
 
 	const onSearch = ({ target }) => {
 		setSearchPhrase(target.value);
 		startDelaySearch(!shouldSearch);
 	};
-
 
 	return (
 		<div className={className}>
@@ -58,7 +55,6 @@ const MainContainer = ({ className }) => {
 			)}
 		</div>
 	);
-
 };
 
 export const Main = styled(MainContainer)`
@@ -77,5 +73,4 @@ export const Main = styled(MainContainer)`
 		margin-top: 40px;
 		font-size: 18px;
 	}
-
 `;

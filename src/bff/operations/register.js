@@ -1,7 +1,6 @@
 import { addUser, getUser } from '../api/index.js';
 import { sessions } from '../sessions.js';
 
-
 export const register = async (regLogin, regPassword) => {
 	const existedUser = await getUser(regLogin);
 
@@ -21,6 +20,5 @@ export const register = async (regLogin, regPassword) => {
 			roleId: user.role_id,
 			session: sessions.create(user),
 		},
-
 	};
-}
+};

@@ -4,13 +4,10 @@ import { ROLE } from '../../constants';
 import { sessions } from '../sessions.js';
 import { getPostCommentsWithAuthor } from '../utils/index.js';
 
-
 export const removePostComment = async (hash, id, postId) => {
 	const accessRoles = [ROLE.ADMIN, ROLE.MODERATOR];
 
 	const access = await sessions.access(hash, accessRoles);
-
-
 
 	if (!access) {
 		return {
@@ -24,8 +21,6 @@ export const removePostComment = async (hash, id, postId) => {
 	const post = await getPost(postId);
 
 	const commentsWithAuthor = await getPostCommentsWithAuthor(postId);
-
-
 
 	return {
 		error: null,

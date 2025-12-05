@@ -19,11 +19,9 @@ const PostContainer = ({ className }) => {
 	const requestServer = useServerRequest();
 	const post = useSelector(selectPost);
 
-
 	useLayoutEffect(() => {
 		dispatch(RESET_POST_DATA);
 	}, [dispatch, isCreating]);
-
 
 	useEffect(() => {
 		if (isCreating) {
@@ -37,11 +35,9 @@ const PostContainer = ({ className }) => {
 		});
 	}, [dispatch, requestServer, params.id, isCreating]);
 
-
 	if (isLoading) {
 		return null;
 	}
-
 
 	const SpecificPostPage =
 		isCreating || isEditing ? (
@@ -57,10 +53,10 @@ const PostContainer = ({ className }) => {
 			</div>
 		);
 
-
 	return error ? <Error error={error} /> : SpecificPostPage;
 
 };
+
 export const Post = styled(PostContainer)`
 	margin: 40px 0;
 	padding: 0 80px

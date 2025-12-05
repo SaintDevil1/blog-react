@@ -1,13 +1,13 @@
+import PropTypes from 'prop-types';
 import { Icon } from '../../../../components/index.js';
 import { CLOSE_MODAL, openModal, removePostAsync } from '../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-import styled from 'styled-components';
 import { useServerRequest } from '../../../../hooks/index.js';
 import { checkAccess } from '../../../../utils/index.js';
 import { ROLE } from '../../../../constants/index.js';
 import { selectUsersRole } from '../../../../selectors/index.js';
+import styled from 'styled-components';
 
 const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 
@@ -15,8 +15,6 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 	const requestServer = useServerRequest();
 	const navigate = useNavigate();
 	const userRole = useSelector(selectUsersRole);
-
-
 
 	const onPostRemove = (id) => {
 		dispatch(
@@ -34,7 +32,6 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 
 	const isAdmin = checkAccess([ROLE.ADMIN], userRole);
 
-
 	return (
 		<div className={className}>
 			<div className='published-at'>
@@ -49,15 +46,16 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 				{publishedAt}
 			</div>
 			{isAdmin && (<div className='buttons'>
-				{editButton}
-				{publishedAt && (
-				<Icon id='fa-trash-o'
+					{editButton}
+					{publishedAt && (
+						<Icon
+							id='fa-trash-o'
 							size='21px'
 							margin='0 0 0 7px'
 							onClick={() => onPostRemove(id)} />
 					)}
-			</div>
-				)}
+				</div>
+			)}
 		</div>
 	);
 };
@@ -66,7 +64,6 @@ export const SpecialPanel = styled(SpecialPanelContainer)`
 	display: flex;
 	justify-content: space-between;
 	margin: ${({ margin }) => margin};
-
 
 	& .special-panel {
 		display: flex;
@@ -87,7 +84,10 @@ export const SpecialPanel = styled(SpecialPanelContainer)`
 		position: relative;
 		top: -1px;
 	}
-
-
-
 `;
+
+SpecialPanel.propTypes = {
+	id: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+	editButton: PropTypes.node.isRequired,
+};

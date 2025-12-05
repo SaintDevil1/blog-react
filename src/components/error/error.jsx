@@ -1,4 +1,5 @@
 import { H2 } from '../h2/h2.jsx';
+import { PROP_TYPE } from '../../constants/index.js';
 import styled from 'styled-components';
 
 const Div = styled.div`
@@ -14,4 +15,8 @@ export const Error = ({ error }) =>
 			<H2>Ошибка</H2>
 			<div>{error}</div>
 		</Div>
-	)
+	);
+
+Error.propTypes = {
+	error: PROP_TYPE.ERROR,
+};

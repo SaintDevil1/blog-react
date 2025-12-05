@@ -17,7 +17,6 @@ export const sessions = {
 		}
 
 		deleteSession(session.id);
-
 	},
 
 	async access(hash, accessRoles) {

@@ -2,16 +2,15 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { server } from '../../bff';
 import { AuthFormError, Button, H2, Input } from '../../components';
-import { useResetForm } from '../../hooks'
+import { useResetForm } from '../../hooks';
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styled from 'styled-components';
 import { Navigate } from 'react-router-dom';
 import { setUser } from '../../actions';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUsersRole } from '../../selectors/index.js';
 import { ROLE } from '../../constants/index.js';
-
 
 const regFormSchema = yup.object().shape({
 	login: yup
@@ -31,8 +30,6 @@ const regFormSchema = yup.object().shape({
 		.required('Заполните повтор пароля')
 		.oneOf([yup.ref('password')], 'Пароли не совпадают'),
 });
-
-
 
 export const RegistrationContainer = ({ className }) => {
 
@@ -56,7 +53,7 @@ export const RegistrationContainer = ({ className }) => {
 
 	const roleId = useSelector(selectUsersRole);
 
-	useResetForm(reset)
+	useResetForm(reset);
 
 	const onSubmit = ({ login, password }) => {
 		server.register(login, password)
@@ -67,7 +64,6 @@ export const RegistrationContainer = ({ className }) => {
 				}
 				dispatch(setUser(res));
 				sessionStorage.setItem('userData', JSON.stringify(res));
-
 			});
 	};
 
@@ -75,7 +71,7 @@ export const RegistrationContainer = ({ className }) => {
 		return <Navigate to='/' />;
 	}
 
-	const formError = errors?.login?.message || errors?.password?.message ||  errors?.passcheck?.message;
+	const formError = errors?.login?.message || errors?.password?.message || errors?.passcheck?.message;
 	const errorMessage = formError || serverError;
 
 	return (
@@ -101,7 +97,6 @@ export const RegistrationContainer = ({ className }) => {
 			</form>
 		</div>
 	);
-
 };
 
 export const Registration = styled(RegistrationContainer)`
@@ -114,5 +109,4 @@ export const Registration = styled(RegistrationContainer)`
 		flex-direction: column;
 		width: 260px;
 	}
-
 `;

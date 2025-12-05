@@ -1,7 +1,6 @@
 import { ACTION_TYPE } from '../actions';
 import { ROLE } from '../constants/index.js';
 
-
 const initialUserState = {
 	id: null,
 	login: null,

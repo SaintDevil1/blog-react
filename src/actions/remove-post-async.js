@@ -1,5 +1,5 @@
 export const removePostAsync = (requestServer, id) => () =>
-requestServer('removePost', id)
+	requestServer('removePost', id);
 
 
 

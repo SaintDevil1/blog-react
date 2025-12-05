@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { server } from '../../bff';
 import { AuthFormError, Button, H2, Input } from '../../components';
-import { useResetForm } from '../../hooks'
+import { useResetForm } from '../../hooks';
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styled from 'styled-components';
@@ -11,8 +11,6 @@ import { setUser } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUsersRole } from '../../selectors';
 import { ROLE } from '../../constants';
-import { sessions } from '../../bff/sessions.js';
-
 
 const authFormSchema = yup.object().shape({
 	login: yup
@@ -36,7 +34,6 @@ const StyledLink = styled(Link)`
 	font-size: 18px;
 `;
 
-
 export const AuthorizationContainer = ({ className }) => {
 
 	const {
@@ -56,10 +53,9 @@ export const AuthorizationContainer = ({ className }) => {
 
 	const dispatch = useDispatch();
 
-
 	const roleId = useSelector(selectUsersRole);
 
-	useResetForm(reset)
+	useResetForm(reset);
 
 	const onSubmit = ({ login, password }) => {
 		server.authorize(login, password)
@@ -74,7 +70,7 @@ export const AuthorizationContainer = ({ className }) => {
 	};
 
 	if (roleId !== ROLE.GUEST) {
-   return <Navigate to="/" />
+		return <Navigate to='/' />;
 	}
 
 	const formError = errors?.login?.message || errors?.password?.message;
@@ -101,7 +97,6 @@ export const AuthorizationContainer = ({ className }) => {
 			</form>
 		</div>
 	);
-
 };
 
 export const Authorization = styled(AuthorizationContainer)`
@@ -114,5 +109,4 @@ export const Authorization = styled(AuthorizationContainer)`
 		flex-direction: column;
 		width: 260px;
 	}
-
 `;

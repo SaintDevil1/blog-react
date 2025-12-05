@@ -2,9 +2,8 @@ import { getRoles } from '../api/index.js';
 import { sessions } from '../sessions.js';
 import { ROLE } from '../../constants';
 
-
 export const fetchRoles = async (hash) => {
-	const accessRoles = [ROLE.ADMIN]
+	const accessRoles = [ROLE.ADMIN];
 
 	const access = await sessions.access(hash, accessRoles);
 
@@ -22,4 +21,4 @@ export const fetchRoles = async (hash) => {
 		res: roles,
 
 	};
-}
+};

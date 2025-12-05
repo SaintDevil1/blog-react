@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Icon } from '../../../../components/index.js';
 import { Comment } from './components';
@@ -6,8 +7,7 @@ import { selectUserId, selectUsersRole } from '../../../../selectors/index.js';
 import { useServerRequest } from '../../../../hooks';
 import { addCommentAsync } from '../../../../actions';
 import styled from 'styled-components';
-import { ROLE } from '../../../../constants/index.js';
-
+import { PROP_TYPE, ROLE } from '../../../../constants/index.js';
 
 const CommentsContainer = ({ className, comments, postId }) => {
 	const [newComment, setNewComment] = useState('');
@@ -17,14 +17,12 @@ const CommentsContainer = ({ className, comments, postId }) => {
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
 
-
 	const onNewCommentAdd = (userId, postId, content) => {
 		dispatch(addCommentAsync(requestServer, userId, postId, content));
 		setNewComment('');
 	};
 
 	const isGuest = userRole === ROLE.GUEST;
-
 
 	return (
 		<div className={className}>
@@ -72,6 +70,10 @@ export const Comments = styled(CommentsContainer)`
 		height: 120px;
 		font-size: 18px;
 		resize: none;
-
 	}
 `;
+
+Comments.propTypes = {
+	comments: PropTypes.arrayOf(PROP_TYPE.COMMENT).isRequired,
+	postId: PropTypes.string.isRequired,
+};

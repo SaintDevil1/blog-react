@@ -3,7 +3,7 @@ import { sessions } from '../sessions.js';
 import { ROLE } from '../../constants';
 
 export const updateUserRole = async (hash, userId, newUserRoleId) => {
-	const accessRoles = [ROLE.ADMIN]
+	const accessRoles = [ROLE.ADMIN];
 
 	const access = await sessions.access(hash, accessRoles);
 
@@ -18,7 +18,7 @@ export const updateUserRole = async (hash, userId, newUserRoleId) => {
 	return {
 		error: null,
 		res: true,
-	}
+	};
 };
 
 

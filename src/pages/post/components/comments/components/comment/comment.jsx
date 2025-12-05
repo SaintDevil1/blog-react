@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Icon } from '../../../../../../components/index.js';
 import { removeCommentAsync, openModal, CLOSE_MODAL } from '../../../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +11,6 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
 	const userRole = useSelector(selectUsersRole);
-
 
 	const onCommentRemove = (id) => {
 		dispatch(
@@ -25,7 +25,6 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 	};
 
 	const isAdminOrModerator = [ROLE.ADMIN, ROLE.MODERATOR].includes(userRole);
-
 
 	return (
 		<div className={className}>
@@ -61,7 +60,6 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 					size='18px'
 					onClick={() => onCommentRemove(id)} />
 			)}
-
 		</div>
 	);
 };
@@ -89,3 +87,11 @@ export const Comment = styled(CommentContainer)`
 		display: flex;
 	}
 `;
+
+Comment.propTypes = {
+	postId: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
+	author: PropTypes.string.isRequired,
+	content: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+};

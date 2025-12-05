@@ -7,5 +7,4 @@ export const ACTION_TYPE = {
 	RESET_POST_DATA: 'RESET_POST_DATA',
 };
 
-
 export const LOGOUT = 'LOGOUT';

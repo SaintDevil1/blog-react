@@ -1,7 +1,7 @@
 import { generateDate } from '../utils';
 
 export const addUser = (login, password) =>
- 	fetch('http://localhost:3000/users', {
+	fetch('http://localhost:3000/users', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -9,7 +9,7 @@ export const addUser = (login, password) =>
 		body: JSON.stringify({
 			login,
 			password,
-			registed_at: generateDate(),
+			registered_at: generateDate(),
 			role_id: 2,
 		}),
 	}).then((createdUser) => createdUser.json());

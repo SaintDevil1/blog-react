@@ -1,43 +1,41 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { Icon, Input } from '../../../../components/index.js';
 import { SpecialPanel } from '../special-panel/special-panel.jsx';
-import {sanitizeContent } from './utils';
-import { savePostAsync } from '../../../../actions'
+import { sanitizeContent } from './utils';
+import { savePostAsync } from '../../../../actions';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { useServerRequest } from '../../../../hooks/index.js';
 import styled from 'styled-components';
-
+import { PROP_TYPE } from '../../../../constants/index.js';
 
 const PostFormContainer = ({ className, post: { id, title, imageUrl, content, publishedAt } }) => {
-	const [imageUrlValue, setImageUrlValue ] = useState(imageUrl)
-	const [titleValue, setTitleValue ] = useState(title)
+	const [imageUrlValue, setImageUrlValue] = useState(imageUrl);
+	const [titleValue, setTitleValue] = useState(title);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const requestServer = useServerRequest()
+	const requestServer = useServerRequest();
 	const contentRef = useRef(null);
 
 	useLayoutEffect(() => {
 		setImageUrlValue(imageUrl);
 		setTitleValue(title);
-	},[imageUrl, title])
+	}, [imageUrl, title]);
 
+	const onSave = () => {
+		const newContent = sanitizeContent(contentRef.current.innerHTML);
 
-const onSave = () => {
-	const newContent = sanitizeContent(contentRef.current.innerHTML)
-
-dispatch(
-	savePostAsync(requestServer, {
-		id,
-		imageUrl: imageUrlValue,
-		title: titleValue,
-		content: newContent,
-	})
-).then(({ id }) => navigate(`/post/${id}`))
-}
-const onImageChange = ({ target }) => setImageUrlValue(target.value)
-const onTitleChange = ({ target }) => setTitleValue(target.value)
-
+		dispatch(
+			savePostAsync(requestServer, {
+				id,
+				imageUrl: imageUrlValue,
+				title: titleValue,
+				content: newContent,
+			}),
+		).then(({ id }) => navigate(`/post/${id}`));
+	};
+	const onImageChange = ({ target }) => setImageUrlValue(target.value);
+	const onTitleChange = ({ target }) => setTitleValue(target.value);
 
 	return (
 		<div className={className}>
@@ -63,7 +61,6 @@ export const PostForm = styled(PostFormContainer)`
 		margin: 0 20px 10px 0;
 	}
 
-
 	& .post-text {
 		min-height: 80px;
 		border: 1px solid #000;
@@ -71,3 +68,7 @@ export const PostForm = styled(PostFormContainer)`
 		white-space: pre-line;
 	}
 `;
+
+PostForm.propTypes = {
+	post: PROP_TYPE.POST.isRequired,
+};

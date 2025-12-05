@@ -7,7 +7,6 @@ import { setUser } from './actions';
 import { ERROR } from './constants';
 import styled from 'styled-components';
 
-
 const AppColumn = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -19,14 +18,12 @@ const AppColumn = styled.div`
 	background-color: #fff;
 `;
 
-
 const Page = styled.div`
 	padding: 120px 0 20px;
 `;
 
 export const Blog = () => {
 	const dispatch = useDispatch();
-
 
 	useLayoutEffect(() => {
 		const currentUserDataJson = sessionStorage.getItem('userData');
@@ -40,7 +37,7 @@ export const Blog = () => {
 			setUser({
 				...currentUserData,
 				roleId: Number(currentUserData.roleId),
-			})
+			}),
 		);
 	}, [dispatch]);
 

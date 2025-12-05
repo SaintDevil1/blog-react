@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Icon } from '../../../../components';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,14 +5,13 @@ import { ROLE } from '../../../../constants/index.js';
 import { selectUsersRole, selectUserLogin, selectUserSession } from '../../../../selectors';
 import { logout } from '../../../../actions';
 import { checkAccess } from '../../../../utils';
-
+import styled from 'styled-components';
 
 const RightAligned = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 `;
-
 
 const UserName = styled.div`
 	font-size: 18px;
@@ -66,7 +64,6 @@ const ControlPanelContainer = ({ className }) => {
 						</Link>
 					</>
 				)}
-
 			</RightAligned>
 		</div>
 
